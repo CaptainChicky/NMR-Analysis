@@ -73,7 +73,7 @@ function parseMNOVA(text) {
 function parseChemDraw(text) {
   const lines = text.split("\n"); const nodes = []; let cur = null;
   for (const line of lines) {
-    const m = line.match(/^(CH3|CH2|CH|C)\s+([\d.]+)\s+([\d.]+)\s+(.*)/);
+    const m = line.match(/^(CH3|CH2|CH|C)\s+(-?[\d.]+)\s+(-?[\d.]+)\s+(.*)/);
     if (m) { if (cur) nodes.push(cur); cur = { type: m[1], shift: parseFloat(m[2]), desc: m[4].trim(), increments: [m[4].trim()] }; }
     else if (cur && line.match(/^\s+[-\d?.]+\s+/)) cur.increments.push(line.trim());
   }

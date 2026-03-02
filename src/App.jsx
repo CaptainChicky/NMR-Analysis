@@ -318,7 +318,14 @@ export default function NMRTool() {
   const numC = compData.filter(c => c.predicted.length > 0).length;
   const mzH = Math.max(50, numC * 24 + 20);
   const svgW = 900, svgH = 360 + mzH;
-  const pad = { t: mzH + 10, b: 50, l: 55, r: 20 };
+  const maxLabelWidth = useMemo(() => {
+    const names = compData.filter(c => c.predicted.length > 0).map(c => c.name);
+    if (!names.length) return 20;
+    const longest = Math.max(...names.map(n => n.length));
+    return Math.min(63, longest * 6.5 + 8); // ~6.5px per char at fontSize 10, plus padding
+  }, [compData]);
+
+  const pad = { t: mzH + 10, b: 50, l: maxLabelWidth, r: 20 };
   const plotW = svgW - pad.l - pad.r, plotH = svgH - pad.t - pad.b;
   const xSc = useCallback(ppm => pad.l + plotW * (1 - (ppm - viewRange[0]) / (viewRange[1] - viewRange[0])), [viewRange, plotW, pad.l]);
   const ySc = useCallback(v => pad.t + plotH * (1 - Math.min(v, displayMaxY) / displayMaxY), [displayMaxY, plotH, pad.t]);

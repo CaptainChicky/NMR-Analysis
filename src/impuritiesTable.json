@@ -1,0 +1,225 @@
+{
+  "title": "13C{1H} NMR Common Impurities Data",
+  "solvents": [
+    "THF-d8",
+    "CD2Cl2",
+    "CDCl3",
+    "toluene-d8",
+    "C6D6",
+    "C6D5Cl",
+    "(CD3)2CO",
+    "(CD3)2SO",
+    "CD3CN",
+    "TFE-d3",
+    "CD3OD",
+    "D2O"
+  ],
+  "solvent_signals": {
+    "THF-d8":      [67.21, 25.31],
+    "CD2Cl2":      [53.84],
+    "CDCl3":       [77.16],
+    "toluene-d8":  [137.48, 128.87, 127.96, 125.13, 20.43],
+    "C6D6":        [128.06],
+    "C6D5Cl":      [134.19, 129.26, 128.25, 125.96],
+    "(CD3)2CO":    [29.84, 206.26],
+    "(CD3)2SO":    [39.52],
+    "CD3CN":       [1.32, 118.26],
+    "TFE-d3":      [61.50, 126.28],
+    "CD3OD":       [49.00],
+    "D2O":         []
+  },
+  "compounds": {
+    "acetic acid": {
+      "CO":  { "THF-d8": 171.69, "CD2Cl2": 175.85, "CDCl3": 175.99, "toluene-d8": 175.30, "C6D6": 175.82, "C6D5Cl": 175.67, "(CD3)2CO": 172.31, "(CD3)2SO": 171.93, "CD3CN": 173.21, "TFE-d3": 177.96, "CD3OD": 175.11, "D2O": 177.21 },
+      "CH3": { "THF-d8": 20.13,  "CD2Cl2": 20.91,  "CDCl3": 20.81,  "toluene-d8": 20.27,  "C6D6": 20.37,  "C6D5Cl": 20.40,  "(CD3)2CO": 20.51,  "(CD3)2SO": 20.95,  "CD3CN": 20.73,  "TFE-d3": 20.91,  "CD3OD": 20.56,  "D2O": 21.03 }
+    },
+    "acetone": {
+      "CO":  { "THF-d8": 204.19, "CD2Cl2": 206.78, "CDCl3": 207.07, "toluene-d8": 204.00, "C6D6": 204.43, "C6D5Cl": 204.83, "(CD3)2CO": 205.87, "(CD3)2SO": 206.31, "CD3CN": 207.43, "TFE-d3": 214.98, "CD3OD": 209.67, "D2O": 215.94 },
+      "CH3": { "THF-d8": 30.17,  "CD2Cl2": 31.00,  "CDCl3": 30.92,  "toluene-d8": 30.03,  "C6D6": 30.14,  "C6D5Cl": 30.12,  "(CD3)2CO": 30.60,  "(CD3)2SO": 30.56,  "CD3CN": 30.91,  "TFE-d3": 32.35,  "CD3OD": 30.67,  "D2O": 30.89 }
+    },
+    "acetonitrile": {
+      "CN":  { "THF-d8": 116.79, "CD2Cl2": 116.92, "CDCl3": 116.43, "toluene-d8": 115.76, "C6D6": 116.02, "C6D5Cl": 115.93, "(CD3)2CO": 117.60, "(CD3)2SO": 117.91, "CD3CN": 118.26, "TFE-d3": 118.95, "CD3OD": 118.06, "D2O": 119.68 },
+      "CH3": { "THF-d8": 0.45,   "CD2Cl2": 2.03,   "CDCl3": 1.89,   "toluene-d8": 0.03,   "C6D6": 0.20,   "C6D5Cl": 0.63,   "(CD3)2CO": 1.12,   "(CD3)2SO": 1.03,   "CD3CN": 1.79,   "TFE-d3": 1.00,   "CD3OD": 0.85,   "D2O": 1.47 }
+    },
+    "benzene": {
+      "CH": { "THF-d8": 128.84, "CD2Cl2": 128.68, "CDCl3": 128.37, "toluene-d8": 128.57, "C6D6": 128.62, "C6D5Cl": 128.38, "(CD3)2CO": 129.15, "(CD3)2SO": 128.30, "CD3CN": 129.32, "TFE-d3": 129.84, "CD3OD": 129.34, "D2O": null }
+    },
+    "tert-butyl methyl ether": {
+      "OCH3":     { "THF-d8": null, "CD2Cl2": null, "CDCl3": 49.45, "toluene-d8": null, "C6D6": 49.19, "C6D5Cl": null, "(CD3)2CO": 49.35, "(CD3)2SO": 48.70, "CD3CN": 49.52, "TFE-d3": null, "CD3OD": 49.66, "D2O": 49.37 },
+      "C":        { "THF-d8": null, "CD2Cl2": null, "CDCl3": 72.87, "toluene-d8": null, "C6D6": 72.40, "C6D5Cl": null, "(CD3)2CO": 72.81, "(CD3)2SO": 72.04, "CD3CN": 73.17, "TFE-d3": null, "CD3OD": 74.32, "D2O": 75.62 },
+      "C(CH3)3":  { "THF-d8": null, "CD2Cl2": null, "CDCl3": 26.99, "toluene-d8": null, "C6D6": 27.09, "C6D5Cl": null, "(CD3)2CO": 27.24, "(CD3)2SO": 26.79, "CD3CN": 27.28, "TFE-d3": null, "CD3OD": 27.22, "D2O": 26.60 }
+    },
+    "tert-butyl alcohol": {
+      "(CH3)3C": { "THF-d8": 67.50, "CD2Cl2": 69.11, "CDCl3": 69.15, "toluene-d8": 68.12, "C6D6": 68.19, "C6D5Cl": 68.19, "(CD3)2CO": 68.13, "(CD3)2SO": 66.88, "CD3CN": 68.74, "TFE-d3": 72.35, "CD3OD": 69.40, "D2O": 70.36 },
+      "C(CH3)3": { "THF-d8": 30.57, "CD2Cl2": 31.46, "CDCl3": 31.25, "toluene-d8": 30.49, "C6D6": 30.47, "C6D5Cl": 31.13, "(CD3)2CO": 30.72, "(CD3)2SO": 30.38, "CD3CN": 30.68, "TFE-d3": 31.07, "CD3OD": 30.91, "D2O": 30.29 }
+    },
+    "BHT": {
+      "C(1)":   { "THF-d8": null, "CD2Cl2": null, "CDCl3": 151.55, "toluene-d8": null, "C6D6": 152.05, "C6D5Cl": null, "(CD3)2CO": 152.51, "(CD3)2SO": 151.47, "CD3CN": 152.42, "TFE-d3": null, "CD3OD": 152.85, "D2O": null },
+      "C(2)":   { "THF-d8": null, "CD2Cl2": null, "CDCl3": 135.87, "toluene-d8": null, "C6D6": 136.08, "C6D5Cl": null, "(CD3)2CO": 138.19, "(CD3)2SO": 139.12, "CD3CN": 138.13, "TFE-d3": null, "CD3OD": 139.09, "D2O": null },
+      "CH(3)":  { "THF-d8": null, "CD2Cl2": null, "CDCl3": 125.55, "toluene-d8": null, "C6D6": 128.52, "C6D5Cl": null, "(CD3)2CO": 129.05, "(CD3)2SO": 127.97, "CD3CN": 129.61, "TFE-d3": null, "CD3OD": 129.49, "D2O": null },
+      "C(4)":   { "THF-d8": null, "CD2Cl2": null, "CDCl3": 128.27, "toluene-d8": null, "C6D6": 125.83, "C6D5Cl": null, "(CD3)2CO": 126.03, "(CD3)2SO": 124.85, "CD3CN": 126.38, "TFE-d3": null, "CD3OD": 126.11, "D2O": null },
+      "CH3(Ar)": { "THF-d8": null, "CD2Cl2": null, "CDCl3": 21.20, "toluene-d8": null, "C6D6": 21.40, "C6D5Cl": null, "(CD3)2CO": 21.31, "(CD3)2SO": 20.97, "CD3CN": 21.23, "TFE-d3": null, "CD3OD": 21.38, "D2O": null },
+      "CH3(C)":  { "THF-d8": null, "CD2Cl2": null, "CDCl3": 30.33, "toluene-d8": null, "C6D6": 31.34, "C6D5Cl": null, "(CD3)2CO": 31.61, "(CD3)2SO": 31.25, "CD3CN": 31.50, "TFE-d3": null, "CD3OD": 31.15, "D2O": null },
+      "C(tBu)":  { "THF-d8": null, "CD2Cl2": null, "CDCl3": 34.25, "toluene-d8": null, "C6D6": 34.35, "C6D5Cl": null, "(CD3)2CO": 35.00, "(CD3)2SO": 34.33, "CD3CN": 35.05, "TFE-d3": null, "CD3OD": 35.36, "D2O": null }
+    },
+    "carbon dioxide": {
+      "CO2": { "THF-d8": 125.69, "CD2Cl2": 125.26, "CDCl3": 124.99, "toluene-d8": 124.86, "C6D6": 124.76, "C6D5Cl": 126.08, "(CD3)2CO": 125.81, "(CD3)2SO": 124.21, "CD3CN": 125.89, "TFE-d3": 126.92, "CD3OD": 126.31, "D2O": null }
+    },
+    "carbon disulfide": {
+      "CS2": { "THF-d8": 193.37, "CD2Cl2": 192.95, "CDCl3": 192.83, "toluene-d8": 192.71, "C6D6": 192.69, "C6D5Cl": 192.49, "(CD3)2CO": 193.58, "(CD3)2SO": 192.63, "CD3CN": 193.60, "TFE-d3": 196.26, "CD3OD": 193.82, "D2O": 197.25 }
+    },
+    "carbon tetrachloride": {
+      "CCl4": { "THF-d8": 96.89, "CD2Cl2": 96.52, "CDCl3": 96.34, "toluene-d8": 96.57, "C6D6": 96.44, "C6D5Cl": 96.38, "(CD3)2CO": 96.65, "(CD3)2SO": 95.44, "CD3CN": 96.68, "TFE-d3": 97.74, "CD3OD": 97.21, "D2O": 96.73 }
+    },
+    "chloroform": {
+      "CH": { "THF-d8": 79.24, "CD2Cl2": 77.99, "CDCl3": 77.36, "toluene-d8": 77.89, "C6D6": 77.79, "C6D5Cl": 77.67, "(CD3)2CO": 79.19, "(CD3)2SO": 79.16, "CD3CN": 79.17, "TFE-d3": 78.83, "CD3OD": 79.44, "D2O": null }
+    },
+    "18-crown-6": {
+      "CH2": { "THF-d8": 71.34, "CD2Cl2": 70.47, "CDCl3": 70.55, "toluene-d8": 70.86, "C6D6": 70.59, "C6D5Cl": 70.55, "(CD3)2CO": 71.25, "(CD3)2SO": 69.85, "CD3CN": 71.22, "TFE-d3": 70.80, "CD3OD": 71.47, "D2O": 70.14 }
+    },
+    "cyclohexane": {
+      "CH2": { "THF-d8": 27.58, "CD2Cl2": 27.38, "CDCl3": 26.94, "toluene-d8": 27.31, "C6D6": 27.23, "C6D5Cl": 26.99, "(CD3)2CO": 27.51, "(CD3)2SO": 26.33, "CD3CN": 27.63, "TFE-d3": 28.34, "CD3OD": 27.96, "D2O": null }
+    },
+    "1,2-dichloroethane": {
+      "CH2": { "THF-d8": 44.64, "CD2Cl2": 44.35, "CDCl3": 43.50, "toluene-d8": 43.40, "C6D6": 43.59, "C6D5Cl": 43.60, "(CD3)2CO": 45.25, "(CD3)2SO": 45.02, "CD3CN": 45.54, "TFE-d3": 45.28, "CD3OD": 45.11, "D2O": null }
+    },
+    "dichloromethane": {
+      "CH2": { "THF-d8": 54.67, "CD2Cl2": 54.24, "CDCl3": 53.52, "toluene-d8": 53.47, "C6D6": 53.46, "C6D5Cl": 53.54, "(CD3)2CO": 54.95, "(CD3)2SO": 54.84, "CD3CN": 55.32, "TFE-d3": 54.46, "CD3OD": 54.78, "D2O": null }
+    },
+    "diethyl ether": {
+      "CH3": { "THF-d8": 15.49, "CD2Cl2": 15.44, "CDCl3": 15.20, "toluene-d8": 15.47, "C6D6": 15.46, "C6D5Cl": 15.35, "(CD3)2CO": 15.78, "(CD3)2SO": 15.12, "CD3CN": 15.63, "TFE-d3": 15.33, "CD3OD": 15.46, "D2O": 14.77 },
+      "CH2": { "THF-d8": 66.14, "CD2Cl2": 66.11, "CDCl3": 65.91, "toluene-d8": 65.94, "C6D6": 65.94, "C6D5Cl": 65.79, "(CD3)2CO": 66.12, "(CD3)2SO": 62.05, "CD3CN": 66.32, "TFE-d3": 67.55, "CD3OD": 66.88, "D2O": 66.42 }
+    },
+    "diglyme": {
+      "CH3":    { "THF-d8": 58.72, "CD2Cl2": 58.95, "CDCl3": 59.01, "toluene-d8": 58.62, "C6D6": 58.66, "C6D5Cl": 58.42, "(CD3)2CO": 58.77, "(CD3)2SO": 57.98, "CD3CN": 58.90, "TFE-d3": 59.40, "CD3OD": 59.06, "D2O": 58.67 },
+      "CH2(a)": { "THF-d8": 71.17, "CD2Cl2": 70.70, "CDCl3": 70.51, "toluene-d8": 70.92, "C6D6": 70.87, "C6D5Cl": 70.56, "(CD3)2CO": 71.03, "(CD3)2SO": 69.54, "CD3CN": 70.99, "TFE-d3": 73.05, "CD3OD": 71.33, "D2O": 70.05 },
+      "CH2(b)": { "THF-d8": 72.72, "CD2Cl2": 72.25, "CDCl3": 71.90, "toluene-d8": 72.39, "C6D6": 72.35, "C6D5Cl": 72.07, "(CD3)2CO": 72.63, "(CD3)2SO": 71.25, "CD3CN": 72.63, "TFE-d3": 71.33, "CD3OD": 72.92, "D2O": 71.63 }
+    },
+    "dimethylacetamide": {
+      "CH3":     { "THF-d8": null, "CD2Cl2": null, "CDCl3": 21.53, "toluene-d8": null, "C6D6": 21.16, "C6D5Cl": null, "(CD3)2CO": 21.51, "(CD3)2SO": 21.29, "CD3CN": 21.76, "TFE-d3": null, "CD3OD": 21.32, "D2O": 21.09 },
+      "CO":      { "THF-d8": null, "CD2Cl2": null, "CDCl3": 171.07, "toluene-d8": null, "C6D6": 169.95, "C6D5Cl": null, "(CD3)2CO": 170.61, "(CD3)2SO": 169.54, "CD3CN": 171.31, "TFE-d3": null, "CD3OD": 173.32, "D2O": 174.57 },
+      "NCH3(a)": { "THF-d8": null, "CD2Cl2": null, "CDCl3": 35.28, "toluene-d8": null, "C6D6": 34.67, "C6D5Cl": null, "(CD3)2CO": 37.92, "(CD3)2SO": 37.38, "CD3CN": 35.17, "TFE-d3": null, "CD3OD": 35.50, "D2O": 35.03 },
+      "NCH3(b)": { "THF-d8": null, "CD2Cl2": null, "CDCl3": 38.13, "toluene-d8": null, "C6D6": 37.03, "C6D5Cl": null, "(CD3)2CO": 34.89, "(CD3)2SO": 34.42, "CD3CN": 38.26, "TFE-d3": null, "CD3OD": 38.43, "D2O": 38.76 }
+    },
+    "dimethylformamide": {
+      "CH":     { "THF-d8": 161.96, "CD2Cl2": 162.57, "CDCl3": 162.62, "toluene-d8": 161.93, "C6D6": 162.13, "C6D5Cl": 162.01, "(CD3)2CO": 162.79, "(CD3)2SO": 162.29, "CD3CN": 163.31, "TFE-d3": 166.01, "CD3OD": 164.73, "D2O": 165.53 },
+      "CH3(a)": { "THF-d8": 35.65,  "CD2Cl2": 36.56,  "CDCl3": 36.50,  "toluene-d8": 35.22,  "C6D6": 35.25,  "C6D5Cl": 35.45,  "(CD3)2CO": 36.15,  "(CD3)2SO": 35.73,  "CD3CN": 36.57,  "TFE-d3": 37.76,  "CD3OD": 36.89,  "D2O": 37.54 },
+      "CH3(b)": { "THF-d8": 30.70,  "CD2Cl2": 31.39,  "CDCl3": 31.45,  "toluene-d8": 30.64,  "C6D6": 30.72,  "C6D5Cl": 30.71,  "(CD3)2CO": 31.03,  "(CD3)2SO": 30.73,  "CD3CN": 31.32,  "TFE-d3": 30.96,  "CD3OD": 31.61,  "D2O": 32.03 }
+    },
+    "dimethyl sulfoxide": {
+      "CH3": { "THF-d8": null, "CD2Cl2": null, "CDCl3": 40.76, "toluene-d8": null, "C6D6": 40.03, "C6D5Cl": null, "(CD3)2CO": 41.23, "(CD3)2SO": 40.45, "CD3CN": 41.31, "TFE-d3": null, "CD3OD": 40.45, "D2O": 39.39 }
+    },
+    "1,4-dioxane": {
+      "CH2": { "THF-d8": 67.65, "CD2Cl2": 67.47, "CDCl3": 67.14, "toluene-d8": 67.17, "C6D6": 67.16, "C6D5Cl": 66.95, "(CD3)2CO": 67.60, "(CD3)2SO": 66.36, "CD3CN": 67.72, "TFE-d3": 68.52, "CD3OD": 68.11, "D2O": 67.19 }
+    },
+    "DME": {
+      "CH3": { "THF-d8": 58.72, "CD2Cl2": 59.02, "CDCl3": 59.08, "toluene-d8": 58.63, "C6D6": 58.68, "C6D5Cl": 58.31, "(CD3)2CO": 58.45, "(CD3)2SO": 58.03, "CD3CN": 58.89, "TFE-d3": 59.52, "CD3OD": 59.06, "D2O": 58.67 },
+      "CH2": { "THF-d8": 72.58, "CD2Cl2": 72.24, "CDCl3": 71.84, "toluene-d8": 72.25, "C6D6": 72.21, "C6D5Cl": 71.81, "(CD3)2CO": 72.47, "(CD3)2SO": 71.17, "CD3CN": 72.47, "TFE-d3": 72.87, "CD3OD": 72.72, "D2O": 71.49 }
+    },
+    "ethane": {
+      "CH3": { "THF-d8": 6.79, "CD2Cl2": 6.91, "CDCl3": 6.89, "toluene-d8": 6.94, "C6D6": 6.96, "C6D5Cl": 6.91, "(CD3)2CO": 6.88, "(CD3)2SO": 6.61, "CD3CN": 6.99, "TFE-d3": 7.01, "CD3OD": 6.98, "D2O": null }
+    },
+    "ethanol": {
+      "CH3": { "THF-d8": 18.90, "CD2Cl2": 18.69, "CDCl3": 18.41, "toluene-d8": 18.78, "C6D6": 18.72, "C6D5Cl": 18.55, "(CD3)2CO": 18.89, "(CD3)2SO": 18.51, "CD3CN": 18.80, "TFE-d3": 18.11, "CD3OD": 18.40, "D2O": 17.47 },
+      "CH2": { "THF-d8": 57.60, "CD2Cl2": 58.57, "CDCl3": 58.28, "toluene-d8": 57.81, "C6D6": 57.86, "C6D5Cl": 57.63, "(CD3)2CO": 57.72, "(CD3)2SO": 56.07, "CD3CN": 57.96, "TFE-d3": 59.68, "CD3OD": 58.26, "D2O": 58.05 }
+    },
+    "ethyl acetate": {
+      "CH3CO": { "THF-d8": 20.45, "CD2Cl2": 21.15, "CDCl3": 21.04, "toluene-d8": 20.46, "C6D6": 20.56, "C6D5Cl": 20.50, "(CD3)2CO": 20.83, "(CD3)2SO": 20.68, "CD3CN": 21.16, "TFE-d3": 21.18, "CD3OD": 20.88, "D2O": 21.15 },
+      "CO":     { "THF-d8": 170.32, "CD2Cl2": 171.24, "CDCl3": 171.36, "toluene-d8": 170.02, "C6D6": 170.44, "C6D5Cl": 170.20, "(CD3)2CO": 170.96, "(CD3)2SO": 170.31, "CD3CN": 171.68, "TFE-d3": 175.55, "CD3OD": 172.89, "D2O": 175.26 },
+      "CH2":    { "THF-d8": 60.30,  "CD2Cl2": 60.63,  "CDCl3": 60.49,  "toluene-d8": 60.08,  "C6D6": 60.21,  "C6D5Cl": 60.06,  "(CD3)2CO": 60.56,  "(CD3)2SO": 59.74,  "CD3CN": 60.98,  "TFE-d3": 62.70,  "CD3OD": 61.50,  "D2O": 62.32 },
+      "CH3":    { "THF-d8": 14.37,  "CD2Cl2": 14.37,  "CDCl3": 14.19,  "toluene-d8": 14.23,  "C6D6": 14.19,  "C6D5Cl": 14.07,  "(CD3)2CO": 14.50,  "(CD3)2SO": 14.40,  "CD3CN": 14.54,  "TFE-d3": 14.36,  "CD3OD": 14.49,  "D2O": 13.92 }
+    },
+    "ethyl methyl ketone": {
+      "CH3CO":   { "THF-d8": null, "CD2Cl2": null, "CDCl3": 29.49, "toluene-d8": null, "C6D6": 28.56, "C6D5Cl": null, "(CD3)2CO": 29.30, "(CD3)2SO": 29.26, "CD3CN": 29.60, "TFE-d3": null, "CD3OD": 29.39, "D2O": 29.49 },
+      "CO":      { "THF-d8": null, "CD2Cl2": null, "CDCl3": 209.56, "toluene-d8": null, "C6D6": 206.55, "C6D5Cl": null, "(CD3)2CO": 208.30, "(CD3)2SO": 208.72, "CD3CN": 209.88, "TFE-d3": null, "CD3OD": 212.16, "D2O": 218.43 },
+      "CH2":     { "THF-d8": null, "CD2Cl2": null, "CDCl3": 36.89, "toluene-d8": null, "C6D6": 36.36, "C6D5Cl": null, "(CD3)2CO": 36.75, "(CD3)2SO": 35.83, "CD3CN": 37.09, "TFE-d3": null, "CD3OD": 37.34, "D2O": 37.27 },
+      "CH2CH3":  { "THF-d8": null, "CD2Cl2": null, "CDCl3": 7.86,  "toluene-d8": null, "C6D6": 7.91,  "C6D5Cl": null, "(CD3)2CO": 8.03,  "(CD3)2SO": 7.61,  "CD3CN": 8.14,  "TFE-d3": null, "CD3OD": 8.09,  "D2O": 7.87 }
+    },
+    "ethylene": {
+      "CH2": { "THF-d8": 123.09, "CD2Cl2": 123.20, "CDCl3": 123.13, "toluene-d8": 122.92, "C6D6": 122.96, "C6D5Cl": 122.95, "(CD3)2CO": 123.47, "(CD3)2SO": 123.52, "CD3CN": 123.69, "TFE-d3": 124.08, "CD3OD": 123.46, "D2O": null }
+    },
+    "ethylene glycol": {
+      "CH2": { "THF-d8": 64.35, "CD2Cl2": 64.08, "CDCl3": 63.79, "toluene-d8": 64.29, "C6D6": 64.34, "C6D5Cl": 64.03, "(CD3)2CO": 64.26, "(CD3)2SO": 62.76, "CD3CN": 64.22, "TFE-d3": 64.87, "CD3OD": 64.30, "D2O": 63.17 }
+    },
+    "H grease": {
+      "CH2": { "THF-d8": 30.45, "CD2Cl2": 30.14, "CDCl3": 29.71, "toluene-d8": 30.31, "C6D6": 30.22, "C6D5Cl": 30.11, "(CD3)2CO": null, "(CD3)2SO": null, "CD3CN": null, "TFE-d3": null, "CD3OD": null, "D2O": null }
+    },
+    "hexamethylbenzene": {
+      "C":   { "THF-d8": 131.88, "CD2Cl2": 132.09, "CDCl3": 132.21, "toluene-d8": 131.72, "C6D6": 131.79, "C6D5Cl": 131.54, "(CD3)2CO": 132.22, "(CD3)2SO": 131.10, "CD3CN": 132.61, "TFE-d3": 134.04, "CD3OD": 132.53, "D2O": null },
+      "CH3": { "THF-d8": 16.71,  "CD2Cl2": 16.93,  "CDCl3": 16.98,  "toluene-d8": 16.84,  "C6D6": 16.95,  "C6D5Cl": 16.68,  "(CD3)2CO": 16.86,  "(CD3)2SO": 16.60,  "CD3CN": 16.94,  "TFE-d3": 17.04,  "CD3OD": 16.90,  "D2O": null }
+    },
+    "n-hexane": {
+      "CH3":      { "THF-d8": 14.22, "CD2Cl2": 14.28, "CDCl3": 14.14, "toluene-d8": 14.34, "C6D6": 14.32, "C6D5Cl": 14.18, "(CD3)2CO": 14.34, "(CD3)2SO": 13.88, "CD3CN": 14.43, "TFE-d3": 14.63, "CD3OD": 14.45, "D2O": null },
+      "CH2(2,5)": { "THF-d8": 23.33, "CD2Cl2": 23.07, "CDCl3": 22.70, "toluene-d8": 23.12, "C6D6": 23.04, "C6D5Cl": 22.86, "(CD3)2CO": 23.28, "(CD3)2SO": 22.05, "CD3CN": 23.40, "TFE-d3": 24.06, "CD3OD": 23.68, "D2O": null },
+      "CH2(3,4)": { "THF-d8": 32.34, "CD2Cl2": 32.01, "CDCl3": 31.64, "toluene-d8": 32.06, "C6D6": 31.96, "C6D5Cl": 31.77, "(CD3)2CO": 32.30, "(CD3)2SO": 30.95, "CD3CN": 32.36, "TFE-d3": 33.17, "CD3OD": 32.73, "D2O": null }
+    },
+    "HMDSO": {
+      "CH3": { "THF-d8": 1.83, "CD2Cl2": 1.96, "CDCl3": 1.97, "toluene-d8": 1.99, "C6D6": 2.05, "C6D5Cl": 1.92, "(CD3)2CO": 2.01, "(CD3)2SO": 1.96, "CD3CN": 2.07, "TFE-d3": 2.09, "CD3OD": 1.99, "D2O": 2.31 }
+    },
+    "HMPA": {
+      "CH3": { "THF-d8": 36.89, "CD2Cl2": 36.99, "CDCl3": 36.87, "toluene-d8": 36.80, "C6D6": 36.88, "C6D5Cl": 36.64, "(CD3)2CO": 37.04, "(CD3)2SO": 36.42, "CD3CN": 37.10, "TFE-d3": 37.21, "CD3OD": 37.00, "D2O": 36.46 }
+    },
+    "imidazole": {
+      "CH(2)":   { "THF-d8": 135.72, "CD2Cl2": 135.76, "CDCl3": 135.38, "toluene-d8": 135.57, "C6D6": 135.76, "C6D5Cl": 135.50, "(CD3)2CO": 135.89, "(CD3)2SO": 135.15, "CD3CN": 136.33, "TFE-d3": 136.58, "CD3OD": 136.31, "D2O": 136.65 },
+      "CH(4,5)": { "THF-d8": 122.20, "CD2Cl2": 122.16, "CDCl3": 122.00, "toluene-d8": 122.13, "C6D6": 122.16, "C6D5Cl": 121.96, "(CD3)2CO": 122.31, "(CD3)2SO": 121.55, "CD3CN": 122.78, "TFE-d3": 122.93, "CD3OD": 122.60, "D2O": 122.43 }
+    },
+    "methane": {
+      "CH4": { "THF-d8": -4.90, "CD2Cl2": -4.33, "CDCl3": -4.63, "toluene-d8": -4.34, "C6D6": -4.29, "C6D5Cl": -4.33, "(CD3)2CO": -5.33, "(CD3)2SO": -4.01, "CD3CN": -4.61, "TFE-d3": -5.88, "CD3OD": -4.90, "D2O": null }
+    },
+    "methanol": {
+      "CH3": { "THF-d8": 49.64, "CD2Cl2": 50.45, "CDCl3": 50.41, "toluene-d8": 49.90, "C6D6": 49.97, "C6D5Cl": 49.66, "(CD3)2CO": 49.77, "(CD3)2SO": 48.59, "CD3CN": 49.90, "TFE-d3": 50.67, "CD3OD": 49.86, "D2O": 49.50 }
+    },
+    "nitromethane": {
+      "CH3": { "THF-d8": 62.49, "CD2Cl2": 63.03, "CDCl3": 62.50, "toluene-d8": 61.14, "C6D6": 61.16, "C6D5Cl": 61.68, "(CD3)2CO": 63.21, "(CD3)2SO": 63.28, "CD3CN": 63.66, "TFE-d3": 63.17, "CD3OD": 63.08, "D2O": 63.22 }
+    },
+    "n-pentane": {
+      "CH3":      { "THF-d8": 14.18, "CD2Cl2": 14.24, "CDCl3": 14.08, "toluene-d8": 14.27, "C6D6": 14.25, "C6D5Cl": 14.10, "(CD3)2CO": 14.29, "(CD3)2SO": 13.28, "CD3CN": 14.37, "TFE-d3": 14.54, "CD3OD": 14.39, "D2O": null },
+      "CH2(2,4)": { "THF-d8": 23.00, "CD2Cl2": 22.77, "CDCl3": 22.38, "toluene-d8": 22.79, "C6D6": 22.72, "C6D5Cl": 22.54, "(CD3)2CO": 22.98, "(CD3)2SO": 21.70, "CD3CN": 23.08, "TFE-d3": 23.75, "CD3OD": 23.38, "D2O": null },
+      "CH2(3)":   { "THF-d8": 34.87, "CD2Cl2": 34.57, "CDCl3": 34.16, "toluene-d8": 34.54, "C6D6": 34.45, "C6D5Cl": 34.26, "(CD3)2CO": 34.83, "(CD3)2SO": 33.48, "CD3CN": 34.89, "TFE-d3": 35.76, "CD3OD": 35.30, "D2O": null }
+    },
+    "propane": {
+      "CH3": { "THF-d8": 16.60, "CD2Cl2": 16.63, "CDCl3": 16.63, "toluene-d8": 16.65, "C6D6": 16.66, "C6D5Cl": 16.56, "(CD3)2CO": 16.68, "(CD3)2SO": 16.34, "CD3CN": 16.73, "TFE-d3": 16.93, "CD3OD": 16.80, "D2O": null },
+      "CH2": { "THF-d8": 16.82, "CD2Cl2": 16.63, "CDCl3": 16.37, "toluene-d8": 16.63, "C6D6": 16.60, "C6D5Cl": 16.48, "(CD3)2CO": 16.78, "(CD3)2SO": 15.67, "CD3CN": 16.91, "TFE-d3": 17.46, "CD3OD": 17.19, "D2O": null }
+    },
+    "2-propanol": {
+      "CH3": { "THF-d8": 25.70, "CD2Cl2": 25.43, "CDCl3": 25.14, "toluene-d8": 25.24, "C6D6": 25.18, "C6D5Cl": 25.14, "(CD3)2CO": 25.67, "(CD3)2SO": 25.43, "CD3CN": 25.55, "TFE-d3": 25.21, "CD3OD": 25.27, "D2O": 24.38 },
+      "CH":  { "THF-d8": 66.14, "CD2Cl2": 64.67, "CDCl3": 64.50, "toluene-d8": 64.12, "C6D6": 64.23, "C6D5Cl": 64.18, "(CD3)2CO": 63.85, "(CD3)2SO": 64.92, "CD3CN": 64.30, "TFE-d3": 66.69, "CD3OD": 64.71, "D2O": 64.88 }
+    },
+    "propylene": {
+      "CH3": { "THF-d8": 19.27, "CD2Cl2": 19.47, "CDCl3": 19.50, "toluene-d8": 19.32, "C6D6": 19.38, "C6D5Cl": 19.32, "(CD3)2CO": 19.42, "(CD3)2SO": 19.20, "CD3CN": 19.48, "TFE-d3": 19.63, "CD3OD": 19.50, "D2O": null },
+      "CH2": { "THF-d8": 115.74, "CD2Cl2": 115.70, "CDCl3": 115.74, "toluene-d8": 115.89, "C6D6": 115.92, "C6D5Cl": 115.86, "(CD3)2CO": 116.03, "(CD3)2SO": 116.07, "CD3CN": 116.12, "TFE-d3": 116.38, "CD3OD": 116.04, "D2O": null },
+      "CH":  { "THF-d8": 134.02, "CD2Cl2": 134.21, "CDCl3": 133.91, "toluene-d8": 133.61, "C6D6": 133.69, "C6D5Cl": 133.57, "(CD3)2CO": 134.34, "(CD3)2SO": 133.55, "CD3CN": 134.78, "TFE-d3": 136.00, "CD3OD": 134.61, "D2O": null }
+    },
+    "pyridine": {
+      "CH(2,6)": { "THF-d8": 150.57, "CD2Cl2": 150.27, "CDCl3": 149.90, "toluene-d8": 150.25, "C6D6": 150.27, "C6D5Cl": 149.93, "(CD3)2CO": 150.67, "(CD3)2SO": 149.58, "CD3CN": 150.76, "TFE-d3": 149.76, "CD3OD": 150.07, "D2O": 149.18 },
+      "CH(3,5)": { "THF-d8": 124.08, "CD2Cl2": 124.06, "CDCl3": 123.75, "toluene-d8": 123.46, "C6D6": 123.58, "C6D5Cl": 123.49, "(CD3)2CO": 124.57, "(CD3)2SO": 123.84, "CD3CN": 127.76, "TFE-d3": 126.27, "CD3OD": 125.53, "D2O": 125.12 },
+      "CH(4)":   { "THF-d8": 135.99, "CD2Cl2": 136.16, "CDCl3": 135.96, "toluene-d8": 135.17, "C6D6": 135.28, "C6D5Cl": 135.32, "(CD3)2CO": 136.56, "(CD3)2SO": 136.05, "CD3CN": 136.89, "TFE-d3": 139.62, "CD3OD": 138.35, "D2O": 138.27 }
+    },
+    "pyrrole": {
+      "CH(2,5)": { "THF-d8": 118.03, "CD2Cl2": 117.93, "CDCl3": 117.77, "toluene-d8": 117.61, "C6D6": 117.78, "C6D5Cl": 117.65, "(CD3)2CO": 117.98, "(CD3)2SO": 117.32, "CD3CN": 118.47, "TFE-d3": 119.61, "CD3OD": 118.28, "D2O": 119.06 },
+      "CH(3,4)": { "THF-d8": 107.74, "CD2Cl2": 108.02, "CDCl3": 107.98, "toluene-d8": 108.15, "C6D6": 108.21, "C6D5Cl": 108.03, "(CD3)2CO": 108.04, "(CD3)2SO": 107.07, "CD3CN": 108.31, "TFE-d3": 108.85, "CD3OD": 108.11, "D2O": 107.83 }
+    },
+    "pyrrolidine": {
+      "CH2(2,5)": { "THF-d8": 45.82, "CD2Cl2": 47.02, "CDCl3": 46.93, "toluene-d8": 47.12, "C6D6": 46.86, "C6D5Cl": 46.75, "(CD3)2CO": null, "(CD3)2SO": 46.51, "CD3CN": 47.57, "TFE-d3": 47.43, "CD3OD": 47.23, "D2O": 46.83 },
+      "CH2(3,4)": { "THF-d8": 26.17, "CD2Cl2": 25.83, "CDCl3": 25.56, "toluene-d8": 25.75, "C6D6": 25.65, "C6D5Cl": 25.59, "(CD3)2CO": null, "(CD3)2SO": 25.26, "CD3CN": 26.34, "TFE-d3": 25.73, "CD3OD": 26.29, "D2O": 25.86 }
+    },
+    "silicone grease": {
+      "CH3": { "THF-d8": 1.20, "CD2Cl2": 1.22, "CDCl3": 1.19, "toluene-d8": 1.37, "C6D6": 1.38, "C6D5Cl": 1.09, "(CD3)2CO": 1.40, "(CD3)2SO": null, "CD3CN": null, "TFE-d3": 2.87, "CD3OD": 2.10, "D2O": null }
+    },
+    "tetrahydrofuran": {
+      "CH2(2,5)": { "THF-d8": 68.03, "CD2Cl2": 68.16, "CDCl3": 67.97, "toluene-d8": 67.75, "C6D6": 67.80, "C6D5Cl": 67.64, "(CD3)2CO": 68.07, "(CD3)2SO": 67.03, "CD3CN": 68.33, "TFE-d3": 69.53, "CD3OD": 68.83, "D2O": 68.68 },
+      "CH2(3,4)": { "THF-d8": 26.19, "CD2Cl2": 25.98, "CDCl3": 25.62, "toluene-d8": 25.79, "C6D6": 25.72, "C6D5Cl": 25.68, "(CD3)2CO": 26.15, "(CD3)2SO": 25.14, "CD3CN": 26.27, "TFE-d3": 26.69, "CD3OD": 26.48, "D2O": 25.67 }
+    },
+    "toluene": {
+      "CH3":     { "THF-d8": 21.29, "CD2Cl2": 21.53, "CDCl3": 21.46, "toluene-d8": 21.37, "C6D6": 21.10, "C6D5Cl": 21.23, "(CD3)2CO": 21.46, "(CD3)2SO": 20.99, "CD3CN": 21.50, "TFE-d3": 21.62, "CD3OD": 21.50, "D2O": null },
+      "C(1)":    { "THF-d8": 138.24, "CD2Cl2": 138.36, "CDCl3": 137.89, "toluene-d8": 137.84, "C6D6": 137.91, "C6D5Cl": 137.65, "(CD3)2CO": 138.48, "(CD3)2SO": 137.35, "CD3CN": 138.90, "TFE-d3": 139.92, "CD3OD": 138.85, "D2O": null },
+      "CH(2,6)": { "THF-d8": 129.47, "CD2Cl2": 129.35, "CDCl3": 129.07, "toluene-d8": 129.33, "C6D6": 129.33, "C6D5Cl": 129.12, "(CD3)2CO": 129.76, "(CD3)2SO": 128.88, "CD3CN": 129.94, "TFE-d3": 130.58, "CD3OD": 129.91, "D2O": null },
+      "CH(3,5)": { "THF-d8": 128.71, "CD2Cl2": 128.54, "CDCl3": 128.26, "toluene-d8": 128.51, "C6D6": 128.56, "C6D5Cl": 128.31, "(CD3)2CO": 129.03, "(CD3)2SO": 128.18, "CD3CN": 129.23, "TFE-d3": 129.79, "CD3OD": 129.20, "D2O": null },
+      "CH(4)":   { "THF-d8": 125.84, "CD2Cl2": 125.62, "CDCl3": 125.33, "toluene-d8": 125.66, "C6D6": 125.68, "C6D5Cl": 125.43, "(CD3)2CO": 126.12, "(CD3)2SO": 125.29, "CD3CN": 126.28, "TFE-d3": 126.82, "CD3OD": 126.29, "D2O": null }
+    },
+    "triethylamine": {
+      "CH3": { "THF-d8": 12.51, "CD2Cl2": 12.12, "CDCl3": 11.61, "toluene-d8": 12.39, "C6D6": 12.35, "C6D5Cl": 11.87, "(CD3)2CO": 12.49, "(CD3)2SO": 11.74, "CD3CN": 12.38, "TFE-d3": 9.51, "CD3OD": 11.09, "D2O": 9.07 },
+      "CH2": { "THF-d8": 47.18, "CD2Cl2": 46.75, "CDCl3": 46.25, "toluene-d8": 46.82, "C6D6": 46.77, "C6D5Cl": 46.36, "(CD3)2CO": 47.07, "(CD3)2SO": 45.74, "CD3CN": 47.10, "TFE-d3": 48.45, "CD3OD": 46.96, "D2O": 47.19 }
+    }
+  }
+}

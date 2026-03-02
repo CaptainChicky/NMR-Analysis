@@ -23,7 +23,7 @@ const SOLVENT_CLASS = {
 const COMPOUND_ALIASES = {
   "dimethylformamide": ["dmf"], "dichloromethane": ["dcm", "ch2cl2"],
   "tetrahydrofuran": ["thf"], "methanol": ["meoh"], "diethyl ether": ["et2o", "ether"],
-  "ethyl acetate": ["etoac"], "H grease": ["grease"], "silicone grease": ["silicone"],
+  "ethyl acetate": ["etoac", "ea"], "H grease": ["grease"], "silicone grease": ["silicone"],
   "n-hexane": ["hexane"], "n-pentane": ["pentane"], "triethylamine": ["tea", "et3n"],
   "pyridine": ["py"], "1,4-dioxane": ["dioxane"], "acetonitrile": ["mecn", "ch3cn"],
   "ethanol": ["etoh"], "2-propanol": ["ipa", "isopropanol"], "toluene": ["phme"],
@@ -34,7 +34,7 @@ const NMR_SOLV_NAMES = {
   "CDCl3": ["cdcl3", "chloroform"], "CD2Cl2": ["cd2cl2", "dcm"],
   "(CD3)2SO": ["(cd3)2so", "dmso", "dmso-d6"], "(CD3)2CO": ["(cd3)2co", "acetone", "acetone-d6"],
   "CD3CN": ["cd3cn", "mecn", "acetonitrile"], "CD3OD": ["cd3od", "meod", "methanol"],
-  "D2O": ["d2o"], "C6D6": ["c6d6", "benzene"], "C6D5Cl": ["c6d5cl"],
+  "D2O": ["d2o", "water"], "C6D6": ["c6d6", "benzene"], "C6D5Cl": ["c6d5cl", "chlorobenzene", "chlorobenzene-d5"],
   "THF-d8": ["thf-d8", "thf"], "toluene-d8": ["toluene-d8", "toluene"], "TFE-d3": ["tfe-d3"],
 };
 

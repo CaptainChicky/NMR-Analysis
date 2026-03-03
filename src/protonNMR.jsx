@@ -1,5 +1,5 @@
 import { useState, useMemo, useCallback, useRef } from "react";
-import protonImpurities from "./protonImpurities.json";
+import protonImpurities from "./1HimpuritiesTable.json";
 
 const COLORS = ["#22c55e","#f59e0b","#ef4444","#a78bfa","#ec4899","#06b6d4","#f97316","#84cc16"];
 const GROUP_COLORS = ["#22c55e","#f59e0b","#a78bfa","#ec4899","#06b6d4","#f97316","#84cc16","#14b8a6","#e879f9","#fb923c","#64748b","#facc15"];

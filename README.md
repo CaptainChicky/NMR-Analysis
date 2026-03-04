@@ -10,5 +10,5 @@ uhhhh there's other details but i cant be assed to remmeber since its been a whi
 also erm em dases are here, so as you can expect the visuals are clauded, but major logic/lorentz function plot and score/analysis logic was made up by me :p
 
 
-#progress
+## progress
 13c needs a final double check to polish everything, 1h is currentyl completely broken, in the process of being impelmented

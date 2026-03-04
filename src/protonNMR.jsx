@@ -213,8 +213,9 @@ export default function ProtonNMR() {
 	const [showSolvent, setShowSolvent] = useState(true);
 	const [showC13Sats, setShowC13Sats] = useState(false);
 	const [scaleToComp, setScaleToComp] = useState(true);
-	const [solvent, setSolvent] = useState("(CD3)2SO");
+	const [solvent, setSolvent] = useState("CDCl3");
 	const [enabledImp, setEnabledImp] = useState({});
+	const [predSolvent, setPredSolvent] = useState("none");
 	const [visibleComps, setVisibleComps] = useState({});
 
 	const [zoomMode, setZoomMode] = useState(false);
@@ -248,6 +249,77 @@ export default function ProtonNMR() {
 
 	const compData = useMemo(() => compounds.map(c => ({ ...c, predicted: parseChemDraw1H(c.text) })), [compounds]);
 	const maxArea = useMemo(() => Math.max(...matchablePeaks.map(p => p.area), 1), [matchablePeaks]);
+
+	const solventPrediction = useMemo(() => {
+		if (predSolvent === "none" || predSolvent === solvent) return null;
+		const predCls = SOLVENT_CLASS[predSolvent];
+		const actCls = SOLVENT_CLASS[solvent];
+		const exchangeable = [], aromatic = [], alphaHetero = [], aliphatic = [];
+
+		function classify(groupName, shift) {
+			const g = groupName.toLowerCase();
+			if (g === "oh" || g === "nh" || g === "nh2" || g === "h2") return "exchangeable";
+			if (g.startsWith("ar") || g.startsWith("ch(")) return "aromatic"; // ArH, ArCH3, CH(2,6) ring positions
+			if (g.startsWith("och") || g.startsWith("nch") || g.includes("co")) return "alphaHetero"; // OCH3, NCH3, CH3CO
+			if (shift > 6) return "aromatic";
+			if (shift >= 3) return "alphaHetero";
+			return "aliphatic";
+		}
+
+		for (const groups of Object.values(protonImpurities.compounds)) {
+			for (const [groupName, info] of Object.entries(groups)) {
+				const pS = info[predSolvent], aS = info[solvent];
+				if (pS == null || aS == null) continue;
+				const pVal = Array.isArray(pS) ? pS[0] : pS;
+				const aVal = Array.isArray(aS) ? aS[0] : aS;
+				if (typeof pVal !== "number" || typeof aVal !== "number") continue;
+				const d = aVal - pVal;
+				const cls = classify(groupName, pVal);
+				if (cls === "exchangeable") exchangeable.push(d);
+				else if (cls === "aromatic") aromatic.push(d);
+				else if (cls === "alphaHetero") alphaHetero.push(d);
+				else aliphatic.push(d);
+			}
+		}
+
+		const summarize = arr => {
+			if (!arr.length) return null;
+			arr.sort((a, b) => a - b);
+			return { min: arr[0], max: arr[arr.length - 1], avg: arr.reduce((s, v) => s + v, 0) / arr.length, n: arr.length };
+		};
+
+		const guidance = [];
+		if (predCls && actCls) {
+			const f = predCls.cls, t = actCls.cls;
+			if (f === t) {
+				if (predCls.desc.includes("aromatic") !== actCls.desc.includes("aromatic")) {
+					guidance.push("Same class but different sub-type (aromatic vs non-aromatic) -- aromatic solvents cause ring-current anisotropy that can shift nearby protons 0.1–0.5 ppm, especially aromatic H and protons held above/below rings.");
+				} else {
+					guidance.push("Same solvent class -- most non-exchangeable CH shifts change <0.05 ppm. OH/NH protons may still shift 0.1-0.5 ppm due to subtle differences in H-bond strength.");
+				}
+			} else if (f === "I" && t === "II") {
+				guidance.push("Class I → II (weak aprotic → H-bond acceptor): OH/NH protons shift downfield as the solvent stabilises the deshielded H-bonded form. α-Heteroatom CH (OCH₃, NCH₂) may shift ±0.1 ppm. Plain aliphatic/aromatic CH typically <0.05 ppm.");
+			} else if (f === "I" && t === "III") {
+				guidance.push("Class I → III (weak aprotic → protic): OH/NH protons shift dramatically or disappear entirely via H/D exchange in deuterated protic solvents. Do not expect to observe exchangeable protons in D₂O or CD₃OD. Non-exchangeable CH shifts are typically small (<0.1 ppm) but widen tolerance for protons near polar groups.");
+			} else if (f === "II" && t === "I") {
+				guidance.push("Class II → I (H-bond acceptor → weak aprotic): OH/NH protons shift upfield and may sharpen as the H-bond acceptor environment is lost. CH shifts mostly <0.05 ppm.");
+			} else if (f === "II" && t === "III") {
+				guidance.push("Class II → III (H-bond acceptor → protic): OH/NH protons shift or broaden significantly — exchange with the protic solvent may cause coalescence or disappearance. α-Heteroatom CH may shift ±0.1 ppm from the changed H-bond network.");
+			} else if (f === "III" && t === "I") {
+				guidance.push("Class III → I (protic → weak aprotic): Exchangeable protons that were broadened or absent may reappear as sharp peaks. OH/NH shifts move upfield substantially. CH shifts are mostly small.");
+			} else if (f === "III" && t === "II") {
+				guidance.push("Class III → II (protic → H-bond acceptor): OH/NH protons remain observable but shift — exchange slows compared to protic solvent, peaks may sharpen. α-Heteroatom CH shifts are small but nonzero.");
+			}
+			if (predCls.desc.includes("aromatic") || actCls.desc.includes("aromatic")) {
+				if (f !== t) // don't double-print if same-class aromatic already covered
+					guidance.push("Aromatic solvent (C₆D₆/toluene-d₈) causes magnetic anisotropy: aromatic protons often shift upfield 0.1-0.5 ppm relative to non-aromatic solvents. Protons near π-systems may shift unpredictably.");
+			}
+			if (solvent === "D2O" || predSolvent === "D2O" || solvent === "CD3OD" || predSolvent === "CD3OD") {
+				guidance.push("Protic deuterated solvent involved — OH, NH, and NH₂ protons undergo H/D exchange and will not be observed. Do not try to match these peaks.");
+			}
+		}
+		return { predCls, actCls, exchangeable: summarize(exchangeable), aromatic: summarize(aromatic), alphaHetero: summarize(alphaHetero), aliphatic: summarize(aliphatic), guidance };
+	}, [predSolvent, solvent]);
 
 	// ── Matching pipeline ──────────────────────────────────────────────────────
 	const majorMatchRes = useMemo(() =>
@@ -440,7 +512,60 @@ export default function ProtonNMR() {
 							<label>NMR solvent: <Sel value={solvent} onChange={e => { setSolvent(e.target.value); setEnabledImp({}); }}>
 								{Object.entries(SOLVENT_DB).map(([k, v]) => <option key={k} value={k}>{v.label}</option>)}
 							</Sel></label>
+							<label>Prediction solvent: <Sel value={predSolvent} onChange={e => setPredSolvent(e.target.value)}>
+								<option value="none">Unknown / N/A</option>
+								{Object.entries(SOLVENT_DB).map(([k, v]) => <option key={k} value={k}>{v.label}</option>)}
+							</Sel></label>
 						</div>
+						{solventPrediction && (
+							<div style={{ background: "#1a1a2e", border: "1px solid #4f46e5", borderRadius: 8, padding: 12, marginBottom: 12 }}>
+								<div style={{ fontSize: 13, fontWeight: 700, marginBottom: 8, color: "#818cf8" }}>
+									Solvent Shift Predictions: {SOLVENT_LABELS[predSolvent]} {"→"} {SOLVENT_LABELS[solvent]}
+								</div>
+								<div style={{ display: "flex", gap: 4, marginBottom: 8, fontSize: 12, flexWrap: "wrap", alignItems: "center" }}>
+									<span style={{ padding: "2px 8px", borderRadius: 12, background: "#312e81", color: "#c7d2fe" }}>
+										{solventPrediction.predCls?.desc} (Class {solventPrediction.predCls?.cls})
+									</span>
+									<span style={{ color: st.mt }}>{"→"}</span>
+									<span style={{ padding: "2px 8px", borderRadius: 12, background: "#312e81", color: "#c7d2fe" }}>
+										{solventPrediction.actCls?.desc} (Class {solventPrediction.actCls?.cls})
+									</span>
+								</div>
+								<div style={{ fontSize: 12, color: st.tx, marginBottom: 6 }}>
+									<span style={{ fontWeight: 600 }}>Expected ¹H shift (actual − predicted):</span>
+								</div>
+								<div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 8, marginBottom: 8 }}>
+									{[
+										{ label: "Exchangeable (OH/NH)", data: solventPrediction.exchangeable, color: "#ef4444" },
+										{ label: "Aromatic (>6 ppm)", data: solventPrediction.aromatic, color: "#f59e0b" },
+										{ label: "α-Heteroatom (3-6 ppm)", data: solventPrediction.alphaHetero, color: "#a78bfa" },
+										{ label: "Aliphatic (<3 ppm)", data: solventPrediction.aliphatic, color: "#22c55e" },
+									].map(({ label, data, color }) => (
+										<div key={label} style={{ background: "#0f172a", borderRadius: 6, padding: 8, borderLeft: `3px solid ${color}` }}>
+											<div style={{ fontSize: 11, color: st.mt, marginBottom: 4 }}>{label}</div>
+											{data ? (
+												<>
+													<div style={{ fontSize: 14, fontWeight: 700, color }}>
+														{data.avg >= 0 ? "+" : ""}{data.avg.toFixed(2)} ppm
+													</div>
+													<div style={{ fontSize: 10, color: st.mt }}>
+														range: {data.min >= 0 ? "+" : ""}{data.min.toFixed(2)} to {data.max >= 0 ? "+" : ""}{data.max.toFixed(2)}
+													</div>
+												</>
+											) : (
+												<div style={{ fontSize: 11, color: st.mt }}>No data</div>
+											)}
+										</div>
+									))}
+								</div>
+								{solventPrediction.guidance.map((g, i) => (
+									<p key={i} style={{ fontSize: 11, color: "#fef3c7", margin: "4px 0", lineHeight: 1.4 }}>* {g}</p>
+								))}
+								<p style={{ fontSize: 11, color: st.mt, marginTop: 6 }}>
+									Computed from {Object.keys(protonImpurities.compounds).length} reference compounds. Consider adjusting tolerance to account for solvent effects.
+								</p>
+							</div>
+						)}
 						<p style={{ fontSize: 12, color: st.mt, marginBottom: 8 }}>Known ¹H impurities in {solvData.label} ({solvData.impurities.length} compounds):</p>
 						<div style={{ display: "flex", flexWrap: "wrap", gap: 6, maxHeight: 240, overflowY: "auto", padding: 4 }}>
 							{solvData.impurities.map((ki, i) => {

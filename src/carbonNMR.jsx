@@ -277,36 +277,72 @@ export default function CarbonNMR() {
 		if (predSolvent === "none" || predSolvent === solvent) return null;
 		const predCls = SOLVENT_CLASS[predSolvent];
 		const actCls = SOLVENT_CLASS[solvent];
-		const carbonyl = [], aromatic = [], aliphatic = [];
+		const carbonyl = [], aromatic = [], alphaHetero = [], aliphatic = [];
+
+		function classifyCarbon(groupName, shift) {
+			const g = groupName.toLowerCase();
+			if (g === "co" || g === "c=o" || g === "coo" || g === "cooh" || g === "co2" || g === "cs2") return "carbonyl";
+			if (g.startsWith("och") || g.startsWith("nch") || g.startsWith("sch")) return "alphaHetero";
+			if (g.startsWith("ar")) return "aromatic";
+			if (g === "cn") return "alphaHetero";
+			if (shift > 150) return "carbonyl";
+			if (shift > 100) return "aromatic";
+			if (shift > 50) return "alphaHetero";
+			return "aliphatic";
+		}
+
 		for (const groups of Object.values(impuritiesData.compounds)) {
 			for (const [groupName, shifts] of Object.entries(groups)) {
 				const pS = shifts[predSolvent], aS = shifts[solvent];
 				if (pS == null || aS == null) continue;
-				const d = aS - pS;
-				if (groupName.includes("CO") && pS > 150) carbonyl.push(d);
-				else if (pS > 100) aromatic.push(d);
+				const pVal = Array.isArray(pS) ? pS[0] : pS;
+				const aVal = Array.isArray(aS) ? aS[0] : aS;
+				if (typeof pVal !== "number" || typeof aVal !== "number") continue;
+				const d = aVal - pVal;
+				const cls = classifyCarbon(groupName, pVal);
+				if (cls === "carbonyl") carbonyl.push(d);
+				else if (cls === "aromatic") aromatic.push(d);
+				else if (cls === "alphaHetero") alphaHetero.push(d);
 				else aliphatic.push(d);
 			}
 		}
+
 		const summarize = arr => {
 			if (!arr.length) return null;
 			arr.sort((a, b) => a - b);
 			return { min: arr[0], max: arr[arr.length - 1], avg: arr.reduce((s, v) => s + v, 0) / arr.length, n: arr.length };
 		};
+
 		const guidance = [];
 		if (predCls && actCls) {
 			const f = predCls.cls, t = actCls.cls;
-			if (f === t) guidance.push("Same solvent class -- expect small shifts (<1 ppm for most carbons).");
-			else if (f === "I" && t === "II") guidance.push("Class I->II: Polar carbons (C=O, C-O, C-N) shift most. Increase tolerance for carbons near H-bond donors.");
-			else if (f === "I" && t === "III") guidance.push("Class I->III: Protic solvent -- carbonyl and polar carbons shift significantly. Consider +2-4 ppm tolerance.");
-			else if (f === "II" && t === "I") guidance.push("Class II->I: Reverse polarity change. Polar carbons shift upfield. Increase tolerance for functional groups.");
-			else if (f === "II" && t === "III") guidance.push("Class II->III: Protic vs acceptor -- moderate changes for polar carbons.");
-			else if (f === "III" && t === "I") guidance.push("Class III->I: Large environment change. Polar functional groups shift most. Consider wider tolerance.");
-			else if (f === "III" && t === "II") guidance.push("Class III->II: Moderate shift expected for polar carbons.");
-			if (predCls.desc.includes("aromatic") || actCls.desc.includes("aromatic"))
-				guidance.push("Aromatic solvent involved -- ring-current anisotropy may cause additional shifts, especially for sp2 carbons.");
+			const predAro = predCls.desc.includes("aromatic");
+			const actAro = actCls.desc.includes("aromatic");
+			if (f === t) {
+				if (predAro !== actAro) {
+					guidance.push("Same class but aromatic ↔ non-aromatic -- ring-current anisotropy affects all carbon types. Consider increasing tolerance.");
+				} else {
+					guidance.push("Same solvent sub-type -- shifts are small for most carbons. Default tolerance should be fine.");
+				}
+			} else if (f === "I" && t === "III") {
+				guidance.push("Class I → III: carbonyl C shifts strongly downfield (can exceed +10 ppm). Aromatic/α-heteroatom C shift downfield ~1 ppm. Aliphatic C mostly unaffected. Widen tolerance for polar carbons.");
+			} else if (f === "III" && t === "I") {
+				guidance.push("Class III → I: carbonyl C shifts strongly upfield (can exceed -10 ppm). Aromatic/α-heteroatom C shift upfield ~1 ppm. Aliphatic C mostly unaffected. Widen tolerance for polar carbons.");
+			} else if (f === "II" && t === "III") {
+				guidance.push("Class II → III: carbonyl C shifts downfield substantially. Aromatic and α-heteroatom C shift slightly downfield. Aliphatic C mostly unaffected.");
+			} else if (f === "III" && t === "II") {
+				guidance.push("Class III → II: carbonyl C shifts upfield substantially. Aromatic and α-heteroatom C shift slightly upfield. Aliphatic C mostly unaffected.");
+			} else if (f === "I" && t === "II") {
+				guidance.push("Class I → II: aromatic and α-heteroatom C shift slightly downfield. Carbonyl C direction varies. Aliphatic C largely unaffected.");
+			} else if (f === "II" && t === "I") {
+				guidance.push("Class II → I: aromatic and α-heteroatom C shift slightly upfield. Carbonyl C direction varies. Aliphatic C largely unaffected.");
+			}
+			if (predAro || actAro) {
+				if (f !== t)
+					guidance.push("Aromatic solvent involved -- ring-current anisotropy adds extra variability, especially for sp2 carbons.");
+			}
 		}
-		return { predCls, actCls, carbonyl: summarize(carbonyl), aromatic: summarize(aromatic), aliphatic: summarize(aliphatic), guidance };
+		return { predCls, actCls, carbonyl: summarize(carbonyl), aromatic: summarize(aromatic), alphaHetero: summarize(alphaHetero), aliphatic: summarize(aliphatic), guidance };
 	}, [predSolvent, solvent]);
 
 	const addComp = () => setCompounds(c => [...c, { name: `Compound ${c.length + 1}`, text: "", color: COLORS[c.length % COLORS.length], isProduct: false }]);
@@ -433,11 +469,12 @@ export default function CarbonNMR() {
 								<div style={{ fontSize: 12, color: st.tx, marginBottom: 6 }}>
 									<span style={{ fontWeight: 600 }}>Expected 13C shift (actual - predicted):</span>
 								</div>
-								<div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 8, marginBottom: 8 }}>
+								<div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 8, marginBottom: 8 }}>
 									{[
-										{ label: "Carbonyl C", data: solventPrediction.carbonyl, color: "#ef4444" },
-										{ label: "Aromatic/sp2 C", data: solventPrediction.aromatic, color: "#f59e0b" },
-										{ label: "Aliphatic C", data: solventPrediction.aliphatic, color: "#22c55e" },
+										{ label: "Carbonyl (>150 ppm)", data: solventPrediction.carbonyl, color: "#ef4444" },
+										{ label: "Aromatic (100-150 ppm)", data: solventPrediction.aromatic, color: "#f59e0b" },
+										{ label: "α-Heteroatom (50-100 ppm)", data: solventPrediction.alphaHetero, color: "#a78bfa" },
+										{ label: "Aliphatic (<50 ppm)", data: solventPrediction.aliphatic, color: "#22c55e" },
 									].map(({ label, data, color }) => (
 										<div key={label} style={{ background: "#0f172a", borderRadius: 6, padding: 8, borderLeft: `3px solid ${color}` }}>
 											<div style={{ fontSize: 11, color: st.mt, marginBottom: 4 }}>{label}</div>
@@ -464,7 +501,7 @@ export default function CarbonNMR() {
 								</p>
 							</div>
 						)}
-						<p style={{ fontSize: 12, color: st.mt, marginBottom: 8 }}>Known impurities in {solvData.label} ({solvData.impurities.length} compounds):</p>
+						<p style={{ fontSize: 12, color: st.mt, marginBottom: 8 }}>Known ¹³C impurities in {solvData.label} ({solvData.impurities.length} compounds):</p>
 						<div style={{ display: "flex", flexWrap: "wrap", gap: 6, maxHeight: 240, overflowY: "auto", padding: 4 }}>
 							{solvData.impurities.map((ki, i) => {
 								const en = !!enabledImp[ki.name];

@@ -291,31 +291,33 @@ export default function ProtonNMR() {
 		const guidance = [];
 		if (predCls && actCls) {
 			const f = predCls.cls, t = actCls.cls;
+			const predAro = predCls.desc.includes("aromatic");
+			const actAro = actCls.desc.includes("aromatic");
 			if (f === t) {
-				if (predCls.desc.includes("aromatic") !== actCls.desc.includes("aromatic")) {
-					guidance.push("Same class but different sub-type (aromatic vs non-aromatic) -- aromatic solvents cause ring-current anisotropy that can shift nearby protons 0.1–0.5 ppm, especially aromatic H and protons held above/below rings.");
+				if (predAro !== actAro) {
+					guidance.push("Same class but aromatic ↔ non-aromatic -- ring-current anisotropy shifts nearby protons. Consider increasing tolerance.");
 				} else {
-					guidance.push("Same solvent class -- most non-exchangeable CH shifts change <0.05 ppm. OH/NH protons may still shift 0.1-0.5 ppm due to subtle differences in H-bond strength.");
+					guidance.push("Same solvent sub-type -- most CH shifts are small. OH/NH may still vary between solvents.");
 				}
-			} else if (f === "I" && t === "II") {
-				guidance.push("Class I → II (weak aprotic → H-bond acceptor): OH/NH protons shift downfield as the solvent stabilises the deshielded H-bonded form. α-Heteroatom CH (OCH₃, NCH₂) may shift ±0.1 ppm. Plain aliphatic/aromatic CH typically <0.05 ppm.");
 			} else if (f === "I" && t === "III") {
-				guidance.push("Class I → III (weak aprotic → protic): OH/NH protons shift dramatically or disappear entirely via H/D exchange in deuterated protic solvents. Do not expect to observe exchangeable protons in D₂O or CD₃OD. Non-exchangeable CH shifts are typically small (<0.1 ppm) but widen tolerance for protons near polar groups.");
-			} else if (f === "II" && t === "I") {
-				guidance.push("Class II → I (H-bond acceptor → weak aprotic): OH/NH protons shift upfield and may sharpen as the H-bond acceptor environment is lost. CH shifts mostly <0.05 ppm.");
-			} else if (f === "II" && t === "III") {
-				guidance.push("Class II → III (H-bond acceptor → protic): OH/NH protons shift or broaden significantly — exchange with the protic solvent may cause coalescence or disappearance. α-Heteroatom CH may shift ±0.1 ppm from the changed H-bond network.");
+				guidance.push("Class I → III: OH/NH shift strongly downfield or vanish via H/D exchange. Other protons shift slightly downfield. Widen tolerance near polar groups.");
 			} else if (f === "III" && t === "I") {
-				guidance.push("Class III → I (protic → weak aprotic): Exchangeable protons that were broadened or absent may reappear as sharp peaks. OH/NH shifts move upfield substantially. CH shifts are mostly small.");
+				guidance.push("Class III → I: OH/NH shift strongly upfield or reappear (were absent in protic solvent). Other protons shift slightly upfield.");
+			} else if (f === "II" && t === "III") {
+				guidance.push("Class II → III: exchangeable protons shift or broaden, may vanish via H/D exchange. Non-exchangeable CH shifts are small.");
 			} else if (f === "III" && t === "II") {
-				guidance.push("Class III → II (protic → H-bond acceptor): OH/NH protons remain observable but shift — exchange slows compared to protic solvent, peaks may sharpen. α-Heteroatom CH shifts are small but nonzero.");
+				guidance.push("Class III → II: exchangeable protons shift upfield and may sharpen. Non-exchangeable CH shifts are small.");
+			} else if (f === "I" && t === "II") {
+				guidance.push("Class I → II: OH/NH shift downfield. Aliphatic and aromatic CH largely unaffected.");
+			} else if (f === "II" && t === "I") {
+				guidance.push("Class II → I: OH/NH shift upfield. Aliphatic and aromatic CH largely unaffected.");
 			}
-			if (predCls.desc.includes("aromatic") || actCls.desc.includes("aromatic")) {
-				if (f !== t) // don't double-print if same-class aromatic already covered
-					guidance.push("Aromatic solvent (C₆D₆/toluene-d₈) causes magnetic anisotropy: aromatic protons often shift upfield 0.1-0.5 ppm relative to non-aromatic solvents. Protons near π-systems may shift unpredictably.");
+			if (predAro || actAro) {
+				if (f !== t)
+					guidance.push("Aromatic solvent involved -- ring-current anisotropy causes additional shifts, especially for aromatic protons.");
 			}
 			if (solvent === "D2O" || predSolvent === "D2O" || solvent === "CD3OD" || predSolvent === "CD3OD") {
-				guidance.push("Protic deuterated solvent involved — OH, NH, and NH₂ protons undergo H/D exchange and will not be observed. Do not try to match these peaks.");
+				guidance.push("Protic deuterated solvent -- OH, NH, NH₂ protons undergo H/D exchange and will most likely not be observed.");
 			}
 		}
 		return { predCls, actCls, exchangeable: summarize(exchangeable), aromatic: summarize(aromatic), alphaHetero: summarize(alphaHetero), aliphatic: summarize(aliphatic), guidance };
@@ -584,7 +586,11 @@ export default function ProtonNMR() {
 								);
 							})}
 						</div>
-						<p style={{ fontSize: 11, color: st.mt, marginTop: 6 }}>* = found in MNOVA annotations. Matched within ±{IMP_TOL} ppm.</p>
+						<p style={{ fontSize: 11, color: st.mt, marginTop: 6 }}>
+							* = found in MNOVA annotations (annotated ppm used directly).
+							Non-annotated impurities are matched within ±{IMP_TOL} ppm of the table reference shift.
+							Shifts sourced from experimental ¹H data table.
+						</p>
 					</div>
 
 					<div style={{ background: st.card, borderRadius: 12, padding: 16 }}>

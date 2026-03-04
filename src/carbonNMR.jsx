@@ -371,7 +371,7 @@ export default function CarbonNMR() {
 			{tab === "input" && (
 				<div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
 					<div style={{ background: st.card, borderRadius: 12, padding: 16 }}>
-						<h3 style={{ fontSize: 15, fontWeight: 700, marginBottom: 8 }}>MNOVA Peak Table</h3>
+						<h3 style={{ fontSize: 15, fontWeight: 700, marginBottom: 8 }}>MNOVA ¹³C Peak Table</h3>
 						<p style={{ fontSize: 12, color: st.mt, marginBottom: 8 }}>Paste tab-separated peak table (index, ppm, intensity, width, area, type, flags, impurity/compound, annotation)</p>
 						<textarea value={mnovaText} onChange={e => setMnovaText(e.target.value)}
 							placeholder={"1\t188.81\t1099.8\t1.44\t9171.18\tCompound\tNone\t\t\n2\t77.16\t16109.1\t2.27\t205295.30\tSolvent\tNone\tCDCl3\t"}
@@ -381,7 +381,7 @@ export default function CarbonNMR() {
 
 					<div style={{ background: st.card, borderRadius: 12, padding: 16 }}>
 						<div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
-							<h3 style={{ fontSize: 15, fontWeight: 700, margin: 0 }}>ChemDraw Predictions</h3>
+							<h3 style={{ fontSize: 15, fontWeight: 700, margin: 0 }}>ChemDraw ¹³C Predictions</h3>
 							<button onClick={addComp} style={{ background: st.btn, color: "#fff", border: "none", borderRadius: 8, padding: "6px 14px", cursor: "pointer", fontSize: 13, fontWeight: 600 }}>+ Add Compound</button>
 						</div>
 						{compounds.map((c, i) => (
@@ -398,7 +398,7 @@ export default function CarbonNMR() {
 									</label>
 									{compounds.length > 1 && <button onClick={() => rmComp(i)} style={{ background: "#7f1d1d", color: "#fca5a5", border: "none", borderRadius: 6, padding: "4px 10px", cursor: "pointer", fontSize: 12 }}>✕</button>}
 								</div>
-								<textarea value={c.text} onChange={e => updComp(i, "text", e.target.value)} placeholder="Paste ChemDraw C-13 NMR Prediction here..."
+								<textarea value={c.text} onChange={e => updComp(i, "text", e.target.value)} placeholder={"Paste ChemDraw C-13 NMR Prediction here...\nCH 191.0 193.0 1-carbonyl\nC 145.9 128.5 1-benzene"}
 									style={{ width: "100%", height: 100, background: st.card, color: st.tx, border: `1px solid ${st.bdr}`, borderRadius: 6, padding: 8, fontSize: 11, fontFamily: "monospace", resize: "vertical", boxSizing: "border-box" }} />
 								{compData[i]?.predicted.length > 0 && <p style={{ fontSize: 12, color: "#4ade80", marginTop: 4 }}>✓ {compData[i].predicted.length} predicted carbons</p>}
 							</div>
